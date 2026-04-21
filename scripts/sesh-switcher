@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TRANSITION_SCRIPT="$CURRENT_DIR/sesh-rename-transition"
+sesh connect "$(
+  sesh list --icons | fzf-tmux -p 80%,85% \
+    --no-sort --ansi --border=rounded --border-label ' sesh ' --prompt '󰊠  ' \
+    --header '^a all ^t tmux ^g configs ^x zoxide ^d kill ^e rename ^f find' \
+    --no-scrollbar --no-separator \
+    --pointer='▶' --marker='󰄬 ' \
+    --color 'bg:#1e1e2e,bg+:#313244,gutter:#1e1e2e,scrollbar:#1e1e2e,border:#cba6f7,label:#cba6f7,header:#f38ba8,prompt:#7dc4e4,pointer:#cba6f7,marker:#cba6f7,spinner:#f5e0dc,info:#cba6f7' \
+    --bind 'tab:down,btab:up' \
+    --bind 'ctrl-a:change-prompt(󰊠  )+reload(sesh list --icons)' \
+    --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-g:change-prompt(⚙  )+reload(sesh list -c --icons)' \
+    --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+    --bind 'ctrl-f:change-prompt(🔍  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(󰊠  )+reload(sesh list --icons)' \
+    --bind "ctrl-e:execute-silent(tmux run-shell -b \"bash '$TRANSITION_SCRIPT' {2..}\")" \
+    --preview-window 'right:55%' \
+    --preview 'sesh preview {}'
+)"

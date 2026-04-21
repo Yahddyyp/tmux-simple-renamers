@@ -13,15 +13,12 @@ get_tmux_option() {
 	fi
 }
 
-chmod +x "$CURRENT_DIR/scripts/"*
-
 RENAME_SESSION="$CURRENT_DIR/scripts/tmux-rename-session"
 RENAME_WINDOW="$CURRENT_DIR/scripts/tmux-rename-window"
 
 session_key=$(get_tmux_option "@tmux-simple-renamers-session-key" "C-e")
 window_key=$(get_tmux_option "@tmux-simple-renamers-window-key" "C-w")
 
-tmux bind-key "$session_key" run-shell "tmux display-popup -E -b none -x C -y 8 -w 50 -h 4 '$RENAME_SESSION #S 50'"
+tmux bind-key "$session_key" run-shell "tmux display-popup -E -b none -x C -y 8 -w 50 -h 4 'bash \"$RENAME_SESSION\" #S'"
 
-# Bind Rename Window
-tmux bind-key "$window_key" run-shell "tmux display-popup -E -b none -x C -y 14 -w 50 -h 10 '$RENAME_WINDOW'"
+tmux bind-key "$window_key" run-shell "tmux display-popup -E -b none -x C -y 14 -w 50 -h 10 'bash \"$RENAME_WINDOW\"'"

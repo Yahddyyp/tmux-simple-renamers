@@ -3,39 +3,32 @@ if ! command -v fzf >/dev/null 2>&1; then
   tmux display-message "Error: fzf not found. Please install fzf to use simple-renamers."
   exit 1
 fi
+
 get_tmux_option() {
     local val=$(tmux show-option -gqv "$1")
     [ -n "$val" ] && echo "$val" || echo "$2"
 }
+
 accent_color=$(get_tmux_option "@tmux-simple-renamers-accent" "#cba6f7")
 secondary_color=$(get_tmux_option "@tmux-simple-renamers-secondary" "#7dc4e4")
 text_color=$(get_tmux_option "@tmux-simple-renamers-text" "#cdd6f4")
 bg_highlight=$(get_tmux_option "@tmux-simple-renamers-bg-highlight" "#313244")
 gray_color=$(get_tmux_option "@tmux-simple-renamers-gray" "#6c7086")
 
-current_window_name=$(tmux display-message -p '#W')
-windows=$(tmux list-windows -F "#I:#W")
-
-selected=$(echo "$windows" | fzf-tmux -p 40,10 \
+# Format: "<index> <name>" — index at field 1, name at field 2+
+tmux list-windows -F '#I #W' | fzf \
+  --height=100% \
   --layout=reverse \
   --border=rounded \
-  --border-label="󰖲 RENAME WINDOW" \
+  --border-label="󰑕 RENAME WINDOWS" \
   --border-label-pos=2 \
   --info=hidden \
   --no-separator \
   --no-scrollbar \
-  --header=" " \
-  --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$accent_color,label:$accent_color,header:$gray_color,prompt:$secondary_color,pointer:$text_color,marker:$text_color,spinner:$text_color,info:$secondary_color" \
+  --phony \
+  --bind 'ctrl-j:down,ctrl-k:up,ctrl-w:abort,esc:abort' \
+  --bind 'focus:transform-query(echo {} | cut -d" " -f2-)' \
+  --bind 'enter:execute-silent(tmux rename-window -t $(echo {} | cut -d" " -f1) {q})+reload(tmux list-windows -F "#I #W")' \
+  --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$accent_color,label:$accent_color,header:$gray_color,prompt:$secondary_color,pointer:$accent_color,marker:$accent_color,spinner:$text_color,info:$accent_color" \
   --prompt="󰊠  " \
-  --query="$current_window_name" \
-  --print-query \
-  --accept-non-match | head -n1)
-
-if [ -z "$selected" ]; then
-    exit 0
-fi
-new_name=$(echo "$selected" | xargs)
-if [ "$new_name" = "$current_window_name" ] || [ -z "$new_name" ]; then
-    exit 0
-fi
-tmux rename-window "$new_name"
+  --pointer="▶" || true

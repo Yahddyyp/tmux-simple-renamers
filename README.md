@@ -26,7 +26,7 @@ Press `<prefix> + <C-w>` to open the window renamer and `<prefix> + <C-e>` to op
 
 ![Window Renamer](assets/Window-Reamers.png)
 
-If you have set -g @tmux-simple-renamers-sesh-integration to on press `<prefix> + T` to open the sesh menu and then hover over the session to renamed and then press `<prefix> + <C-e>` to rename that session and then press enter, it will take you back to the sesh menu with the session renamed.
+If you have `set -g @tmux-simple-renamers-sesh-integration` to on press `<prefix> + T` to open the sesh menu and then hover over the session to renamed and then press `<prefix> + <C-e>` to rename that session and then press enter, it will take you back to the sesh menu with the session renamed.
 
 ## Configure
 

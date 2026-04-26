@@ -10,7 +10,7 @@
 - **[tmux](https://github.com/tmux/tmux)** - What were you expecting its a plugin for tmux
 - **[TPM](https://github.com/tmux-plugins/tpm)** - To install the plugin 
 - **[fzf](https://github.com/junegunn/fzf#fzf-tmux-script)** - To Render the pop ups for the renamers
-- **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the `set -g @tmux-simple-renamers-sesh-integration 'on'` option
+- **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the `set -g @tmux-simple-renamers-sesh-integration` option
 - **[zoxide](https://github.com/ajeetdsouza/zoxide) (optional)** - For sesh integration
 
 ### Installation via TPM
@@ -68,3 +68,4 @@ Once enabled, you can customize the key binding for the `sesh-switcher`.
 set -g @tmux-simple-renamers-sesh-switcher-key '<your-key>'
 ```
 
+<p align="center">Made with 💜 by Yahddyyp</p>

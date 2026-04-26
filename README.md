@@ -1,6 +1,6 @@
 # Simple-renamers - Just some renamers to use in tmux
 
-![Session Renamer](assets/session-renamer.png)
+![Session Renamer](assets/Session-Renamer.png)
 
 ## Install
 
@@ -24,7 +24,7 @@ set -g @plugin 'yahddyyp/tmux-simple-renamers'
 ## Usage 
 Press `<prefix> + <C-w>` to open the window renamer and `<prefix> + <C-e>` to open the session renamer.
 
-![Window Renamer](assets/window-renamer.png)
+![Window Renamer](assets/Window-Reamers.png)
 
 If you have set -g @tmux-simple-renamers-sesh-integration to on press `<prefix> + T` to open the sesh menu and then hover over the session to renamed and then press `<prefix> + <C-e>` to rename that session and then press enter, it will take you back to the sesh menu with the session renamed.
 
@@ -52,7 +52,7 @@ You can customize all the colors used in the popups.
 
 ### Sesh Integration
 
-![Sesh intigration](assets/sesh-integration.png)
+![Sesh intigration](assets/Sesh-intigration.png)
 
 This plugin can also handle key bindings for `sesh`, the tmux session manager.
 

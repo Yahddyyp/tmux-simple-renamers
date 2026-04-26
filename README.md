@@ -1,4 +1,4 @@
-# Simple-renamers - Just some renamers to use in tmux
+# Simple-renamers - Just some renamers
 
 ![Session Renamer](assets/Session-Renamer.png)
 
@@ -11,7 +11,7 @@
 - **[TPM](https://github.com/tmux-plugins/tpm)** - To install the plugin 
 - **[fzf](https://github.com/junegunn/fzf#fzf-tmux-script)** - To Render the pop ups for the renamers
 - **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the @tmux-simple-renamers-sesh-integration option
-- **[zoxide](https://github.com/ajeetdsouza/zoxide)(optional)** - For sesh integration
+- **[zoxide](https://github.com/ajeetdsouza/zoxide) (optional)** - For sesh integration
 
 ### Installation via TPM
 

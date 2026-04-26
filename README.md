@@ -10,7 +10,7 @@
 - **[tmux](https://github.com/tmux/tmux)** - What were you expecting its a plugin for tmux
 - **[TPM](https://github.com/tmux-plugins/tpm)** - To install the plugin 
 - **[fzf](https://github.com/junegunn/fzf#fzf-tmux-script)** - To Render the pop ups for the renamers
-- **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the @tmux-simple-renamers-sesh-integration option
+- **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the `set -g @tmux-simple-renamers-sesh-integration 'on'` option
 - **[zoxide](https://github.com/ajeetdsouza/zoxide) (optional)** - For sesh integration
 
 ### Installation via TPM

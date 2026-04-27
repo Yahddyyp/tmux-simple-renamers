@@ -38,6 +38,14 @@ set -g @tmux-simple-renamers-session-key '<your-key>'
 set -g @tmux-simple-renamers-window-key '<your-key>'
 ```
 
+### Window Renamer
+
+By default the window renamer will place the current window at the top of the list. To disable this behavior and show windows in their default order, add the following to your `~/.tmux.conf`:
+
+```tmux
+set -g @tmux-simple-renamers-current-first 'off'
+```
+
 ### Theme Colors
 You can customize all the colors used in the popups.
 

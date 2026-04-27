@@ -15,8 +15,24 @@ text_color=$(get_tmux_option "@tmux-simple-renamers-text" "#cdd6f4")
 bg_highlight=$(get_tmux_option "@tmux-simple-renamers-bg-highlight" "#313244")
 gray_color=$(get_tmux_option "@tmux-simple-renamers-gray" "#6c7086")
 
-# Format: "<index> <name>" — index at field 1, name at field 2+
-tmux list-windows -F '#I #W' | fzf \
+current_first=$(get_tmux_option "@tmux-simple-renamers-current-first" "on")
+
+if [ "$current_first" = "on" ]; then
+    current_window_index=$(tmux display-message -p '#I')
+    window_list=$(tmux list-windows -F '#I #W')
+    input_command() {
+        echo "$window_list" | grep "^$current_window_index "
+        echo "$window_list" | grep -v "^$current_window_index "
+    }
+    reload_action="+reload(tmux list-windows -F \"#I #W\")+down"
+else
+    input_command() {
+        tmux list-windows -F '#I #W'
+    }
+    reload_action="+reload(tmux list-windows -F \"#I #W\")"
+fi
+
+input_command | fzf \
   --height=100% \
   --layout=reverse \
   --border=rounded \
@@ -28,7 +44,7 @@ tmux list-windows -F '#I #W' | fzf \
   --phony \
   --bind 'ctrl-j:down,ctrl-k:up,ctrl-w:abort,esc:abort' \
   --bind 'focus:transform-query(echo {} | cut -d" " -f2-)' \
-  --bind 'enter:execute-silent(tmux rename-window -t $(echo {} | cut -d" " -f1) {q})+reload(tmux list-windows -F "#I #W")' \
+  --bind "enter:execute-silent(tmux rename-window -t \$(echo {} | cut -d' ' -f1) {q})$reload_action" \
   --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$accent_color,label:$accent_color,header:$gray_color,prompt:$secondary_color,pointer:$accent_color,marker:$accent_color,spinner:$text_color,info:$accent_color" \
   --prompt="󰊠  " \
   --pointer="▶" || true

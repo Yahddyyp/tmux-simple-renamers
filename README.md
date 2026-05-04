@@ -15,7 +15,7 @@
 
 ### Installation via TPM
 
-Added this line to your `tmux.conf`
+Added this line to your `tmux.conf`:
 
 ```tmux
 set -g @plugin 'yahddyyp/tmux-simple-renamers'

@@ -57,7 +57,6 @@ You can customize all the colors used in the popups.
 | `@tmux-simple-renamers-bg-highlight` | `#313244` | Selected item background |
 | `@tmux-simple-renamers-error` | `#f38ba8` | Border color when a session already exists |
 | `@tmux-simple-renamers-gray` | `#6c7086` | Metadata header color |
-| `@tmux-simple-renamers-start-blank` | `off` | Start with a blank input field |
 
 ### Start Blank
 

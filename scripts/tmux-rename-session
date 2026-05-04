@@ -19,6 +19,12 @@ forced_width="$2"
 if echo "$session" | grep -qE '^[^a-zA-Z0-9] '; then
   session=$(echo "$session" | sed -E 's/^[^a-zA-Z0-9]* //')
 fi
+start_blank=$(get_tmux_option "@tmux-simple-renamers-start-blank" "off")
+if [ "$start_blank" = "on" ]; then
+  initial_query=""
+else
+  initial_query="$session"
+fi
 wins=$(tmux list-windows -t "$session" 2>/dev/null | wc -l | tr -d ' ')
 panes=$(tmux list-panes -t "$session" 2>/dev/null | wc -l | tr -d ' ')
 path=$(tmux display-message -pt "$session" '#{pane_current_path}' 2>/dev/null)
@@ -51,7 +57,7 @@ while true; do
     --header="$info" \
     --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$current_border,label:$current_label,header:$current_header,prompt:$secondary_color,pointer:$text_color,marker:$text_color,spinner:$text_color,info:$secondary_color" \
     --prompt="󰊠  " \
-    --query="$session" \
+    --query="$initial_query" \
     --print-query | head -n1)
   exit_code=$?
   if [ $exit_code -ne 0 ] || [ -z "$input_result" ]; then

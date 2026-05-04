@@ -7,15 +7,15 @@
 ### Dependencies
 
 - **[bash](https://www.gnu.org/software/bash/)** - Just simple bash 
-- **[tmux](https://github.com/tmux/tmux)** - What were you expecting its a plugin for tmux
+- **[tmux](https://github.com/tmux/tmux)** - What were you expecting, it's a plugin for tmux
 - **[TPM](https://github.com/tmux-plugins/tpm)** - To install the plugin 
-- **[fzf](https://github.com/junegunn/fzf#fzf-tmux-script)** - To Render the pop ups for the renamers
+- **[fzf](https://github.com/junegunn/fzf#fzf-tmux-script)** - to render the pop ups for the renamers
 - **[sesh](https://github.com/joshmedeski/sesh) (optional)** - To use the `set -g @tmux-simple-renamers-sesh-integration` option
 - **[zoxide](https://github.com/ajeetdsouza/zoxide) (optional)** - For sesh integration
 
 ### Installation via TPM
 
-Add this line to your `~/.tmux.conf`
+Change this by
 
 ```tmux
 set -g @plugin 'yahddyyp/tmux-simple-renamers'
@@ -26,12 +26,12 @@ Press `<prefix> + <C-w>` to open the window renamer and `<prefix> + <C-e>` to op
 
 ![Window Renamer](assets/Window-Reamers.png)
 
-If you have `set -g @tmux-simple-renamers-sesh-integration` to `on` press `<prefix> + T` to open the sesh menu and then hover over the session to renamed and then press `<prefix> + <C-e>` to rename that session and then press enter, it will take you back to the sesh menu with the session renamed.
+If you have `set -g @tmux-simple-renamers-sesh-integration` to `on` press `<prefix> + T` to open the sesh menu and then hover over the session to be renamed and then press `<prefix> + <C-e>` to rename that session and then press enter, it will take you back to the sesh menu with the session renamed.
 
 ## Configure
 
 ### Keybindings
-Change the default keys (Default to `<prefix> + <C+e>` and `<prefix> + <C-w>`)
+Change the default keys (Default to `<prefix> + <C-e>` and `<prefix> + <C-w>`)
 
 ```tmux
 set -g @tmux-simple-renamers-session-key '<your-key>'
@@ -40,7 +40,7 @@ set -g @tmux-simple-renamers-window-key '<your-key>'
 
 ### Window Renamer
 
-By default the window renamer will place the current window at the top of the list. To disable this behavior and show windows in their default order, add the following to your `~/.tmux.conf`:
+By default the window renamer will place the current window at the top of the list. To disable this behavior and show windows in their default order, change this by:
 
 ```tmux
 set -g @tmux-simple-renamers-current-first 'off'
@@ -57,14 +57,23 @@ You can customize all the colors used in the popups.
 | `@tmux-simple-renamers-bg-highlight` | `#313244` | Selected item background |
 | `@tmux-simple-renamers-error` | `#f38ba8` | Border color when a session already exists |
 | `@tmux-simple-renamers-gray` | `#6c7086` | Metadata header color |
+| `@tmux-simple-renamers-start-blank` | `off` | Start with a blank input field |
+
+### Start Blank
+
+By default, the renamers will start with the current name. To start with a blank input field, change this by:
+
+```tmux
+set -g @tmux-simple-renamers-start-blank 'on'
+```
 
 ### Sesh Integration
 
-![Sesh intigration](assets/Sesh-intigration.png)
+![Sesh integration](assets/Sesh-intigration.png)
 
 This plugin can also handle key bindings for `sesh`, the tmux session manager.
 
-By default, this integration is **off**. To enable it, add the following to your `~/.tmux.conf`:
+By default, this integration is **off**. To enable it, change this by:
 
 ```tmux
 set -g @tmux-simple-renamers-sesh-integration 'on'
